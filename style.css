@@ -1,0 +1,41 @@
+body {
+    text-align: center;
+}
+
+.territory-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.card-row {
+    display: flex;
+    justify-content: center;
+    margin: 4px;
+}
+
+.col {
+    width: 660px;
+    min-width: 600px;
+    display: flex;
+}
+
+.col.left {
+    justify-content: flex-start;
+}
+
+.col.right {
+    justify-content: flex-end;
+}
+
+.card {
+    width: 107px;
+    height: 150px;
+    margin-left: 1px;
+    background-color: green;
+    background-size: cover;
+    font-size: 4px;
+}
+
+.card.visible {
+    background-color: blue;
+}
