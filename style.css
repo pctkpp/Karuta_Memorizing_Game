@@ -1,5 +1,8 @@
 body {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .territory-container {
@@ -31,11 +34,26 @@ body {
     width: 107px;
     height: 150px;
     margin-left: 1px;
-    background-color: green;
+    background-color: #85A650;
     background-size: cover;
-    font-size: 4px;
+    color: #85A650;
+    font-size: 1px;
 }
 
 .card.visible {
     background-color: blue;
+}
+
+button {
+    border: none;
+    background-color: #85A650;
+    border-radius: 4px;
+    padding: 10px;
+    color: white;
+}
+
+#kimariji {
+    width: 150px;
+    padding: 10px;
+    border: 5px solid red;
 }

@@ -18,25 +18,42 @@ const KMRJ_H = [
     'うか', 'うら', 'つく', 'つき', 'しら', 'しの', 'もも', 'もろ', 'ゆら', 'ゆう'
 ];
 
-var cardList = [
-    [ ['mu', 'su', 'me', 'fu', 'sa'], ['ho', 'se', 'ura', 'uka'] ],
-    [ ['tsuku', 'tsuki', 'shira', 'shino'], ['momo', 'moro', 'yura', 'yuu'] ],
-    [ ['akika', 'akino', 'araza', 'arashi'], ['ooke', 'ooko', 'ooe', 'oku', 'watanoharako'] ]
-];
+////________ DECK PREP
 
-function mergeCardList(cardList) {
-    let mergedList = [];
-    
-    for (let i = 0; i < cardList.length; i++) {
-        for (let j = 0; j < cardList[i].length; j++) {
-            mergedList = mergedList.concat(cardList[i][j]);
-        }
-    }
-    
-    return mergedList;
+function getMultipleRandom(arr, num) {
+    const shuffled = [...arr].sort(() => 0.5 - Math.random());  
+    return shuffled.slice(0, num);
 }
 
-var mergedList = mergeCardList(cardList);
+let deck = getMultipleRandom(KMRJ_R, 25);
+
+console.log(deck);
+
+var cardList = [];
+
+let ranRow = Math.floor(Math.random() * 3);
+let ranCol = Math.floor(Math.random() * 2);
+let c=0;
+
+for (let i=0;i<3;i++) {
+    let row = [];
+
+    for (let j=0;j<2;j++) {
+        let col = [];
+
+        for (let k=0;k<4;k++) {
+            col.push(deck[c]);
+            c++;
+            
+        }
+        row.push(col);
+    }
+    cardList.push(row);
+}
+
+cardList[ranRow][ranCol].push(deck[c]);
+
+console.log(cardList);
 
 
 ////________ TERRITORY PREP
@@ -87,11 +104,14 @@ startButton.addEventListener("click", startGame);
 var kimariji = document.getElementById("kimariji");
 var k_index = 0;
 var gameOver = false;
-kimariji.innerText = KMRJ_R[0];
 
 var deadCardButton = document.getElementById("dead-card-button");
+var helpButton = document.getElementById("help-button");
 
 function startGame() {
+
+    kimariji.innerText = KMRJ_R[0];
+    k_index = 0;
 
     //add event listener for all cards
     //(WIP) add animation flip back
@@ -109,13 +129,40 @@ function startGame() {
     }
 
     deadCardButton.addEventListener("click", handleDeadCard);
+    helpButton.addEventListener("click", handleHelp);
 
+}
+
+function handleHelp() {
+    if(gameOver) return;
+
+    if(!deck.includes(kimariji.innerText.toLowerCase())) {
+        console.log(kimariji.innerText.toLowerCase());
+        nextKimariji();
+    }
+    else {
+        for(let i=0;i<3;i++) {
+            for(let j=0;j<2;j++) {
+                for(let k=0;k<cardList[i][j].length;k++) {
+                    let card = document.getElementById("card"+i+j+k);
+
+                    if(card.innerText === kimariji.innerText.toLocaleLowerCase()) {
+                        console.log("correct");
+                        card.style.backgroundImage = "url(/front_card/" + kimariji.innerText + ".jpg)";
+                        card.classList.add("visible");
+                        nextKimariji();
+                        return;
+                    }
+                }
+            }
+        }
+    }
 }
 
 function handleDeadCard() {
     if(gameOver) return;
 
-    if(!mergedList.includes(kimariji.innerText.toLowerCase())) {
+    if(!deck.includes(kimariji.innerText.toLowerCase())) {
         console.log("correct");
         nextKimariji();
     }
