@@ -148,7 +148,7 @@ function handleHelp() {
 
                     if(card.innerText === kimariji.innerText.toLocaleLowerCase()) {
                         console.log("correct");
-                        card.style.backgroundImage = "url(/front_card/" + kimariji.innerText + ".jpg)";
+                        card.style.backgroundImage = "url(/Karuta_Memorizing_Game/front_card/" + kimariji.innerText + ".jpg)";
                         card.classList.add("visible");
                         nextKimariji();
                         return;
@@ -178,7 +178,7 @@ function handleCardClick(card) {
     //console.log(kimariji)
     if(card.innerText === kimariji.innerText.toLocaleLowerCase()) {
         console.log("correct");
-        card.style.backgroundImage = "url(/front_card/" + kimariji.innerText + ".jpg)";
+        card.style.backgroundImage = "url(/Karuta_Memorizing_Game/front_card/" + kimariji.innerText + ".jpg)";
         card.classList.add("visible");
         nextKimariji();
     }
