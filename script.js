@@ -82,7 +82,7 @@ function createCardRow() {
                 card.classList.add("visible");
                 card.id = "card"+i+j+k;
 
-                card.style.backgroundImage = "url(/front_card/" + cardList[i][j][k] + ".jpg)";
+                card.style.backgroundImage = "url(/Karuta_Memorizing_Game/front_card/" + cardList[i][j][k] + ".jpg)";
                 card.innerText = cardList[i][j][k];
 
                 col.appendChild(card);
